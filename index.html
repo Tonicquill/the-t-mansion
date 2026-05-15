@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The T Mansion | Angeles City Staycation</title>
+<meta name="description" content="Your newest stylish escape in Angeles City. A luxe staycation spot made for comfort, celebration, and unforgettable moments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --bg-warm: #F3EDE4;
+    --ink: #1A1A1A;
+    --ink-muted: #6B6560;
+    --accent: #B85C3D;
+    --accent-light: #D4836A;
+    --white: #FFFFFF;
+    --glass: rgba(255,255,255,0.65);
+    --shadow-soft: 0 20px 60px -15px rgba(0,0,0,0.08);
+    --shadow-medium: 0 25px 50px -12px rgba(0,0,0,0.12);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; object-fit: cover; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: var(--glass);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    transition: padding 0.4s var(--ease-out-expo), background 0.4s ease;
+  }
+  .nav.scrolled {
+    padding: 0.75rem 2rem;
+    background: rgba(250,247,242,0.92);
+  }
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.4s var(--ease-out-expo);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
+  }
+  .nav-cta:hover { transform: scale(1.04); background: var(--accent); }
+
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+
+  /* Hero */
+  .hero {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-content { max-width: 540px; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow span {
+    width: 24px; height: 2px;
+    background: var(--accent);
+  }
+  .hero-title {
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-body {
+    font-size: 1.125rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 45ch;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease, background 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -8px rgba(184,92,61,0.35);
+    background: #A04F33;
+  }
+  .btn-secondary {
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    transition: all 0.3s var(--ease-out-expo);
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--white); }
+
+  .hero-visual {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-main {
+    width: 100%;
+    max-width: 520px;
+    height: 640px;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    z-index: 2;
+  }
+  .hero-img-main img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 8s ease;
+  }
+  .hero-img-main:hover img { transform: scale(1.05); }
+  .hero-shape {
+    position: absolute;
+    width: 280px; height: 280px;
+    border-radius: 2rem;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    opacity: 0.15;
+    z-index: 1;
+  }
+  .hero-shape-1 { top: 5%; right: -40px; transform: rotate(12deg); }
+  .hero-shape-2 { bottom: 10%; left: -60px; width: 200px; height: 200px; border-radius: 50%; opacity: 0.1; }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 60px; left: -30px;
+    background: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .hero-badge strong { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .hero-badge span { font-size: 0.8rem; color: var(--ink-muted); }
+
+  /* Section base */
+  .section {
+    padding: 7rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-header {
+    max-width: 640px;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 55ch;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background: var(--white);
+    border-radius: 2rem;
+    box-shadow: var(--shadow-soft);
+    margin-top: -4rem;
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label { font-size: 0.875rem; color: var(--ink-muted); }
+
+  /* About split */
+  .about-split {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding-top: 6rem;
+  }
+  .about-images {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .about-img {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .about-img:hover { transform: translateY(-6px); }
+  .about-img img { width: 100%; height: 280px; object-fit: cover; }
+  .about-img-tall { grid-row: span 2; }
+  .about-img-tall img { height: 100%; min-height: 580px; }
+
+  /* Amenities */
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .amenity-card {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+  }
+  .amenity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+  }
+  .amenity-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: var(--bg-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+  }
+  .amenity-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .amenity-desc { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; }
+
+  /* Gallery masonry */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 260px;
+    gap: 1rem;
+  }
+  .gallery-item {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .gallery-item:hover::after { opacity: 1; }
+  .gallery-wide { grid-column: span 2; }
+  .gallery-tall { grid-row: span 2; }
+
+  /* Pricing */
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pricing-card {
+    background: var(--white);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .pricing-card:hover { transform: translateY(-6px); }
+  .pricing-card.featured {
+    border: 2px solid var(--accent);
+  }
+  .pricing-badge {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pricing-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .pricing-price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .pricing-price span {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+  .pricing-list { list-style: none; }
+  .pricing-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .pricing-list li:last-child { border-bottom: none; }
+  .check { color: var(--accent); font-weight: 700; }
+
+  /* Testimonials */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .testimonial-card:hover { transform: translateY(-4px); }
+  .testimonial-stars { color: #E8A838; font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .testimonial-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .testimonial-author { font-weight: 600; font-size: 0.9rem; }
+  .testimonial-role { font-size: 0.8rem; color: var(--ink-muted); }
+
+  /* Contact */
+  .contact-section {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 2rem;
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  .contact-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .contact-body { color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-cta .btn-primary { background: var(--accent); }
+  .contact-cta .btn-primary:hover { background: var(--accent-light); }
+
+  /* Footer */
+  .footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .footer-brand { font-weight: 700; color: var(--ink); font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; text-align: center; }
+    .hero-content { max-width: 100%; }
+    .hero-body { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { min-height: 400px; }
+    .hero-img-main { height: 480px; }
+    .hero-badge { left: 20px; bottom: 20px; }
+    .about-split { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-section { grid-template-columns: 1fr; padding: 3rem; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .stats-bar { grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 2rem; }
+    .amenities-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .gallery-wide { grid-column: span 1; }
+    .gallery-tall { grid-row: span 1; }
+    .section { padding: 5rem 1.5rem; }
+    .about-images { grid-template-columns: 1fr; }
+    .about-img-tall { grid-row: span 1; }
+    .about-img-tall img { min-height: 280px; }
+    .contact-section { padding: 2.5rem 1.5rem; border-radius: 1.5rem; }
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 1rem;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: var(--white);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+</style>
+</head>
+<body>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <button class="lightbox-close" onclick="event.stopPropagation(); document.getElementById('lightbox').classList.remove('active')">&times;</button>
+  <img src="" alt="Gallery" id="lightbox-img">
+</div>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">The T Mansion</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#rates">Rates</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="nav-cta">Book Now</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow"><span></span>Hotel Resort in Angeles City</div>
+    <h1 class="hero-title">Your newest stylish <em>escape</em> in Angeles City</h1>
+    <p class="hero-body">A luxe staycation spot made for comfort, celebration, and unforgettable moments. Private pools, air-conditioned rooms, and open spaces designed for gatherings of every kind.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Reserve Your Stay &rarr;</a>
+      <a href="#gallery" class="btn-secondary">View Gallery</a>
+    </div>
+  </div>
+  <div class="hero-visual reveal reveal-delay-2">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="hero-img-main">
+      <img src="images/hero.jpg" alt="The T Mansion exterior">
+    </div>
+    <div class="hero-badge">
+      <strong>2.6K+</strong>
+      <span>Happy followers</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Guest Recommend</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Five-Star Reviews</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Always Open</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">80-100</div>
+    <div class="stat-label">Guest Capacity</div>
+  </div>
+</div>
+
+<!-- About -->
+<section class="section about-split" id="about">
+  <div class="about-images reveal">
+    <div class="about-img about-img-tall">
+      <img src="images/about-pool.jpg" alt="The T Mansion pool area">
+    </div>
+    <div class="about-img">
+      <img src="images/about-interior.jpg" alt="The T Mansion interior">
+    </div>
+    <div class="about-img">
+      <img src="images/about-hall.jpg" alt="The T Mansion function hall">
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <div class="section-header" style="margin-bottom: 2rem;">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">A luxe staycation spot made for comfort and celebration</h2>
+    </div>
+    <p class="section-desc" style="margin-bottom: 1.5rem;">
+      Nestled in Don Eleuterio, Don Bonifacio, Angeles City, The T Mansion is your private resort destination for family getaways, friend outings, birthdays, reunions, and intimate celebrations.
+    </p>
+    <p class="section-desc" style="margin-bottom: 2rem;">
+      We believe every gathering deserves a beautiful backdrop. That is why we have designed every space — from the swimming pool to the open function hall — to feel like a personal retreat.
+    </p>
+    <a href="#contact" class="btn-primary">Plan Your Visit</a>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-label">Gallery</div>
+    <h2 class="section-title">Spaces designed to impress</h2>
+    <p class="section-desc">Every corner of The T Mansion is crafted for memorable moments.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-wide" onclick="openLightbox(this)">
+      <img src="images/gallery-1.jpg" alt="Resort view">
+    </div>
+    <div class="gallery-item gallery-tall" onclick="openLightbox(this)">
+      <img src="images/gallery-2.jpg" alt="Poolside">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gallery-3.jpg" alt="Living space">
+    </div>
+    <div class="gallery-item gallery-wide" onclick="openLightbox(this)">
+      <img src="images/gallery-4.jpg" alt="Bedroom">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gallery-5.jpg" alt="Outdoor space">
+    </div>
+    <div class="gallery-item gallery-tall" onclick="openLightbox(this)">
+      <img src="images/gallery-6.jpg" alt="Function hall">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gallery-7.jpg" alt="Resort detail">
+    </div>
+    <div class="gallery-item gallery-wide" onclick="openLightbox(this)">
+      <img src="images/gallery-8.jpg" alt="Pool area">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gallery-9.jpg" alt="Garden">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gallery-10.jpg" alt="Night view">
+    </div>
+  </div>
+</section>
+
+<!-- Amenities -->
+<section class="section" id="amenities">
+  <div class="section-header reveal">
+    <div class="section-label">Amenities</div>
+    <h2 class="section-title">Everything you need for the perfect getaway</h2>
+    <p class="section-desc">From private pools to karaoke nights, every detail is covered so you can focus on making memories.</p>
+  </div>
+  <div class="amenities-grid">
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">&#127946;</div>
+      <div class="amenity-title">Private Swimming Pool</div>
+      <div class="amenity-desc">Enjoy a refreshing dip in your own private pool, exclusive to your group for the full duration of your stay.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-1">
+      <div class="amenity-icon">&#10052;</div>
+      <div class="amenity-title">Fully Air-Conditioned Rooms</div>
+      <div class="amenity-desc">Beat the heat with cool, comfortable bedrooms designed for restful sleep after a day of fun.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-2">
+      <div class="amenity-icon">&#127881;</div>
+      <div class="amenity-title">Open Function Hall</div>
+      <div class="amenity-desc">Spacious hall that comfortably accommodates 80 to 100 guests — ideal for parties and events.</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">&#128250;</div>
+      <div class="amenity-title">Smart TV with Netflix</div>
+      <div class="amenity-desc">Stay entertained with high-speed WiFi and a Smart TV loaded with Netflix for movie nights.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-1">
+      <div class="amenity-icon">&#127908;</div>
+      <div class="amenity-title">Karaoke & Billiards</div>
+      <div class="amenity-desc">Sing your heart out and challenge friends to a game — fun is always on the agenda.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-2">
+      <div class="amenity-icon">&#127858;</div>
+      <div class="amenity-title">Complete Kitchen + BBQ</div>
+      <div class="amenity-desc">Outdoor kitchen and BBQ grill ready for your culinary creations. Cookware included.</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">&#128663;</div>
+      <div class="amenity-title">Spacious Parking</div>
+      <div class="amenity-desc">Ample parking space for your entire party so everyone can arrive with ease.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-1">
+      <div class="amenity-icon">&#127758;</div>
+      <div class="amenity-title">WiFi Connectivity</div>
+      <div class="amenity-desc">Stay connected with reliable high-speed internet throughout the property.</div>
+    </div>
+    <div class="amenity-card reveal reveal-delay-2">
+      <div class="amenity-icon">&#127775;</div>
+      <div class="amenity-title">Always Open</div>
+      <div class="amenity-desc">We are open 24/7 to welcome you whenever your celebration begins.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="rates">
+  <div class="section-header reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+    <div class="section-label">Weekday Promo</div>
+    <h2 class="section-title">Special rates for weekday escapes</h2>
+    <p class="section-desc">Extended all the way to August. Monday to Thursday only. Slots fill fast — reserve early.</p>
+  </div>
+  <div class="pricing-cards">
+    <div class="pricing-card reveal">
+      <div class="pricing-name">1st Floor</div>
+      <div class="pricing-price">&#8369;10,000 <span>/ weekday</span></div>
+      <ul class="pricing-list">
+        <li><span class="check">&#10003;</span> Private Swimming Pool</li>
+        <li><span class="check">&#10003;</span> Fully Air-Conditioned Rooms</li>
+        <li><span class="check">&#10003;</span> Open Function Hall</li>
+        <li><span class="check">&#10003;</span> WiFi + Smart TV</li>
+        <li><span class="check">&#10003;</span> Karaoke & Billiards</li>
+        <li><span class="check">&#10003;</span> Kitchen + BBQ Grill</li>
+        <li><span class="check">&#10003;</span> Spacious Parking</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Book This Package</a>
+    </div>
+    <div class="pricing-card featured reveal reveal-delay-1">
+      <div class="pricing-badge">Best Value</div>
+      <div class="pricing-name">Full House</div>
+      <div class="pricing-price">&#8369;15,000 <span>/ weekday</span></div>
+      <ul class="pricing-list">
+        <li><span class="check">&#10003;</span> Entire Property Access</li>
+        <li><span class="check">&#10003;</span> Private Swimming Pool</li>
+        <li><span class="check">&#10003;</span> All Air-Conditioned Rooms</li>
+        <li><span class="check">&#10003;</span> Full Function Hall (80-100 pax)</li>
+        <li><span class="check">&#10003;</span> WiFi + Smart TV (Netflix)</li>
+        <li><span class="check">&#10003;</span> Karaoke & Billiards</li>
+        <li><span class="check">&#10003;</span> Complete Kitchen + BBQ</li>
+        <li><span class="check">&#10003;</span> Outdoor Kitchen Access</li>
+        <li><span class="check">&#10003;</span> Spacious Parking</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Book Full House</a>
+    </div>
+  </div>
+  <p class="section-desc" style="text-align: center; margin-top: 2rem; font-size: 0.9rem;">Weekend rates available on request. DM us for custom event packages.</p>
+</section>
+
+<!-- Testimonials -->
+<section class="section" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-label">Reviews</div>
+    <h2 class="section-title">What our guests are saying</h2>
+    <p class="section-desc">100% of reviewers recommend The T Mansion. Here is what they love most.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"I will rate this 100000/10. Great place to stay, sobrang linis and lawak pa ng place. As in kahit ilan pa kayo, kayang kaya."</p>
+      <div class="testimonial-author">Vane Ssa</div>
+      <div class="testimonial-role">Verified Guest</div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Perfect place to stay when exploring nearby spots. The kids enjoyed the pool and the function hall. We'll definitely be back."</p>
+      <div class="testimonial-author">Reynalyn Soon</div>
+      <div class="testimonial-role">Celebrated daughter's 1st birthday & christening</div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Thank you sir Joemar Sanchez for the wonderful experience. The staff were accommodating and the place exceeded expectations."</p>
+      <div class="testimonial-author">Joemar Sanchez</div>
+      <div class="testimonial-role">Event Guest</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="contact-section reveal">
+    <div>
+      <h2 class="contact-title">Ready to host your next celebration?</h2>
+      <p class="contact-body">Send us a message to check availability, request a custom package, or book your weekday promo. We reply fast.</p>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <span>Don Eleuterio, Don Bonifacio, Angeles City, Philippines, 2009</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span>thetmansion@gmail.com</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <span>facebook.com/TheTMansion</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-cta" style="text-align: center;">
+      <a href="mailto:thetmansion@gmail.com" class="btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.5rem;">Email to Book</a>
+      <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.9rem;">Or message us on Facebook for instant replies</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-brand">The T Mansion</div>
+  <p>Your newest stylish escape in Angeles City. Made for comfort, celebration, and unforgettable moments.</p>
+  <p style="margin-top: 1rem; opacity: 0.6;">&copy; 2026 The T Mansion. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Lightbox
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('active');
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
