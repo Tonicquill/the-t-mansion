@@ -2,3 +2,4 @@
 *.png
 *.yml
 .playwright-mcp/
+.claude/
