@@ -327,6 +327,36 @@
   .about-img-tall { grid-row: span 2; }
   .about-img-tall img { height: 100%; min-height: 580px; }
 
+  /* Events photo grid */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .event-card {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    box-shadow: var(--shadow-soft);
+  }
+  .event-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+  .event-card:hover img { transform: scale(1.06); }
+  .event-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+  }
+
   /* Amenities */
   .amenities-grid {
     display: grid;
@@ -336,7 +366,7 @@
   .amenity-card {
     background: var(--white);
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow-soft);
     transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
     border: 1px solid rgba(0,0,0,0.03);
@@ -346,17 +376,17 @@
     box-shadow: var(--shadow-medium);
   }
   .amenity-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
+    width: 40px; height: 40px;
+    border-radius: 12px;
     background: var(--bg-warm);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
   }
-  .amenity-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; }
-  .amenity-desc { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; }
+  .amenity-title { font-weight: 600; font-size: 0.95rem; }
+  .amenity-desc { display: none; }
 
   /* Gallery masonry */
   .gallery-grid {
@@ -537,6 +567,7 @@
     .hero-badge { left: 20px; bottom: 20px; }
     .about-split { grid-template-columns: 1fr; gap: 3rem; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .events-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-section { grid-template-columns: 1fr; padding: 3rem; }
   }
@@ -548,6 +579,8 @@
     .amenities-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .pricing-cards { grid-template-columns: 1fr; }
+    .events-grid { grid-template-columns: 1fr 1fr; }
+    .event-card { aspect-ratio: 1/1; }
     .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
     .gallery-wide { grid-column: span 1; }
     .gallery-tall { grid-row: span 1; }
@@ -680,22 +713,18 @@
       <div class="section-label">About Us</div>
       <h2 class="section-title">A luxe staycation spot made for comfort and celebration</h2>
     </div>
-    <p class="section-desc" style="margin-bottom: 1.5rem;">
-      Nestled in Don Eleuterio, Don Bonifacio, Angeles City, The T Mansion is your private resort destination for family getaways, friend outings, birthdays, reunions, and intimate celebrations.
-    </p>
     <p class="section-desc" style="margin-bottom: 2rem;">
-      With 4 bedrooms, a private swimming pool, open function hall for 80-100 guests, karaoke, billiards, and a complete outdoor kitchen with BBQ grill, every space is designed to feel like your personal retreat. We are open 24/7 to welcome your celebration whenever it begins.
+      4 bedrooms. Private pool. Function hall for 100. Open 24/7 in Angeles City.
     </p>
     <a href="#contact" class="btn-primary">Plan Your Visit</a>
   </div>
 </section>
 
 <!-- Gallery -->
-<section class="section" id="gallery">
+<section class="section" id="gallery" style="padding-top: 4rem;">
   <div class="section-header reveal">
     <div class="section-label">Gallery</div>
-    <h2 class="section-title">Spaces designed to impress</h2>
-    <p class="section-desc">Every corner of The T Mansion is crafted for memorable moments.</p>
+    <h2 class="section-title">The spaces</h2>
   </div>
   <div class="gallery-grid">
     <div class="gallery-item gallery-wide" onclick="openLightbox(this)">
@@ -736,36 +765,32 @@
   <div class="section-header reveal">
     <div class="section-label">Celebrations</div>
     <h2 class="section-title">Where milestones become memories</h2>
-    <p class="section-desc">From first birthdays to family reunions, our guests have celebrated life is biggest moments at The T Mansion. Here is what we have hosted.</p>
   </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="testimonial-stars"></div>
-      <p class="testimonial-text" style="font-style: normal;"><strong>Children is Birthday Parties</strong> — Themed celebrations with balloon arches, custom backdrops, and fairy-tale setups. From princess pink to butterfly gardens, we transform the hall into your child is dream world.</p>
-      <div class="testimonial-author">1st Birthday & Dedication Events</div>
-      <div class="testimonial-role">Up to 80-100 guests</div>
+  <div class="events-grid">
+    <div class="event-card reveal" onclick="openLightbox(this)">
+      <img src="images/gallery-2.jpg" alt="1st Birthday fairy theme">
+      <div class="event-caption">1st Birthday & Dedication</div>
     </div>
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="testimonial-stars"></div>
-      <p class="testimonial-text" style="font-style: normal;"><strong>Family Reunions & Gatherings</strong> — Multi-generational stays with poolside BBQs, karaoke nights, and billiards tournaments. Bunk rooms for kids, queen beds for adults, space for everyone.</p>
-      <div class="testimonial-author">Staycations with the Whole Family</div>
-      <div class="testimonial-role">24/7 check-in available</div>
+    <div class="event-card reveal reveal-delay-1" onclick="openLightbox(this)">
+      <img src="images/gallery-5.jpg" alt="Blue and gold balloon theme">
+      <div class="event-caption">Themed Parties</div>
     </div>
-    <div class="testimonial-card reveal reveal-delay-2">
-      <div class="testimonial-stars"></div>
-      <p class="testimonial-text" style="font-style: normal;"><strong>Buffet Receptions & Catering Events</strong> — Full buffet setups with chafing dishes, balloon centerpieces, and outdoor dining by the pool. Perfect for christenings, graduations, and anniversaries.</p>
-      <div class="testimonial-author">Catering-Ready Venue</div>
-      <div class="testimonial-role">Outdoor kitchen + BBQ grill included</div>
+    <div class="event-card reveal reveal-delay-2" onclick="openLightbox(this)">
+      <img src="images/gallery-9.jpg" alt="Pink princess birthday">
+      <div class="event-caption">Princess Celebrations</div>
+    </div>
+    <div class="event-card reveal" onclick="openLightbox(this)">
+      <img src="images/gallery-7.jpg" alt="Buffet reception setup">
+      <div class="event-caption">Buffet Receptions</div>
     </div>
   </div>
 </section>
 
 <!-- Amenities -->
-<section class="section" id="amenities">
+<section class="section" id="amenities" style="padding-top: 4rem;">
   <div class="section-header reveal">
     <div class="section-label">Amenities</div>
-    <h2 class="section-title">Everything you need for the perfect getaway</h2>
-    <p class="section-desc">From private pools to karaoke nights, every detail is covered so you can focus on making memories.</p>
+    <h2 class="section-title">What you get</h2>
   </div>
   <div class="amenities-grid">
     <div class="amenity-card reveal">
@@ -819,54 +844,48 @@
 <!-- Pricing -->
 <section class="section" id="rates">
   <div class="section-header reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
-    <div class="section-label">Weekday Promo</div>
-    <h2 class="section-title">Special rates for weekday escapes</h2>
-    <p class="section-desc">Extended all the way to August. Monday to Thursday only. Slots fill fast — reserve early.</p>
+    <div class="section-label">Rates</div>
+    <h2 class="section-title">Weekday promo</h2>
+    <p class="section-desc">Mon–Thu. Extended to August.</p>
   </div>
   <div class="pricing-cards">
     <div class="pricing-card reveal">
       <div class="pricing-name">1st Floor</div>
       <div class="pricing-price">&#8369;10,000 <span>/ weekday</span></div>
       <ul class="pricing-list">
-        <li><span class="check">&#10003;</span> Private Swimming Pool</li>
-        <li><span class="check">&#10003;</span> 3 Bedrooms (1st Floor)</li>
-        <li><span class="check">&#10003;</span> Open Function Hall</li>
-        <li><span class="check">&#10003;</span> WiFi + Smart TV</li>
-        <li><span class="check">&#10003;</span> Karaoke & Billiards</li>
-        <li><span class="check">&#10003;</span> Kitchen + BBQ Grill</li>
-        <li><span class="check">&#10003;</span> Spacious Parking</li>
+        <li><span class="check">&#10003;</span> Pool + 3 Bedrooms</li>
+        <li><span class="check">&#10003;</span> Function Hall</li>
+        <li><span class="check">&#10003;</span> WiFi + Netflix</li>
+        <li><span class="check">&#10003;</span> Karaoke + Billiards</li>
+        <li><span class="check">&#10003;</span> Kitchen + BBQ</li>
+        <li><span class="check">&#10003;</span> Parking</li>
       </ul>
-      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--ink-muted);">Beds: 1 Queen + 1 Queen w/ pull-out + 2 Double Decks</p>
-      <a href="#contact" class="btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Book This Package</a>
+      <a href="#contact" class="btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Book</a>
     </div>
     <div class="pricing-card featured reveal reveal-delay-1">
       <div class="pricing-badge">Best Value</div>
       <div class="pricing-name">Full House</div>
       <div class="pricing-price">&#8369;15,000 <span>/ weekday</span></div>
       <ul class="pricing-list">
-        <li><span class="check">&#10003;</span> Entire Property Access</li>
-        <li><span class="check">&#10003;</span> Private Swimming Pool</li>
-        <li><span class="check">&#10003;</span> All 4 Air-Conditioned Rooms</li>
-        <li><span class="check">&#10003;</span> Full Function Hall (80-100 pax)</li>
-        <li><span class="check">&#10003;</span> WiFi + Smart TV (Netflix)</li>
-        <li><span class="check">&#10003;</span> Karaoke & Billiards</li>
-        <li><span class="check">&#10003;</span> Complete Kitchen + BBQ</li>
-        <li><span class="check">&#10003;</span> Outdoor Kitchen Access</li>
-        <li><span class="check">&#10003;</span> Spacious Parking</li>
+        <li><span class="check">&#10003;</span> Entire Property</li>
+        <li><span class="check">&#10003;</span> Pool + 4 Bedrooms</li>
+        <li><span class="check">&#10003;</span> Function Hall (100 pax)</li>
+        <li><span class="check">&#10003;</span> WiFi + Netflix</li>
+        <li><span class="check">&#10003;</span> Karaoke + Billiards</li>
+        <li><span class="check">&#10003;</span> Kitchen + BBQ + Outdoor Kitchen</li>
+        <li><span class="check">&#10003;</span> Parking</li>
       </ul>
-      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--ink-muted);">Beds: 2 Queen + 2 Queen w/ pull-outs + 4 Double Decks + 1 Double Deck</p>
       <a href="#contact" class="btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Book Full House</a>
     </div>
   </div>
-  <p class="section-desc" style="text-align: center; margin-top: 2rem; font-size: 0.9rem;">Weekend rates available on request. DM us for custom event packages.</p>
+  <p class="section-desc" style="text-align: center; margin-top: 2rem; font-size: 0.85rem;">Weekend rates on request. DM for events.</p>
 </section>
 
 <!-- Testimonials -->
 <section class="section" id="reviews">
   <div class="section-header reveal">
     <div class="section-label">Reviews</div>
-    <h2 class="section-title">What our guests are saying</h2>
-    <p class="section-desc">100% of reviewers recommend The T Mansion. Here is what they love most.</p>
+    <h2 class="section-title">Guest love</h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal">
@@ -894,8 +913,8 @@
 <section class="section" id="contact">
   <div class="contact-section reveal">
     <div>
-      <h2 class="contact-title">Ready to host your next celebration?</h2>
-      <p class="contact-body">Send us a message to check availability, request a custom package, or book your weekday promo. We reply fast.</p>
+      <h2 class="contact-title">Book your stay</h2>
+      <p class="contact-body">Check availability or reserve your dates. We reply fast.</p>
       <div class="contact-info">
         <div class="contact-row">
           <div class="contact-icon">
@@ -927,7 +946,7 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-brand">The T Mansion</div>
-  <p>Your newest stylish escape in Angeles City. Made for comfort, celebration, and unforgettable moments.</p>
+  <p>Private resort villa in Angeles City.</p>
   <div style="display: flex; gap: 1rem; justify-content: center; margin: 1.5rem 0;">
     <a href="https://www.facebook.com/61576043233814" target="_blank" rel="noopener" aria-label="Facebook" style="width: 40px; height: 40px; border-radius: 50%; background: var(--bg-warm); display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
