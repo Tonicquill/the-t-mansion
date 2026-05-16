@@ -68,26 +68,27 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 1.25rem 2rem;
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: var(--glass);
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-    transition: padding 0.4s var(--ease-out-expo), background 0.4s ease;
+    background: #0F0F0F;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    transition: padding 0.4s var(--ease-out-expo), background 0.4s ease, border-color 0.4s ease;
   }
   .nav.scrolled {
-    padding: 0.75rem 2rem;
-    background: rgba(250,247,242,0.92);
+    padding: 0.6rem 2rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
   }
-  .nav-logo {
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
-    color: var(--ink);
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+    display: block;
   }
   .nav-links {
     display: flex;
@@ -97,7 +98,7 @@
   .nav-links a {
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--ink-muted);
+    color: rgba(255,255,255,0.7);
     transition: color 0.3s ease;
     position: relative;
   }
@@ -106,13 +107,13 @@
     position: absolute;
     bottom: -4px; left: 0;
     width: 0; height: 2px;
-    background: var(--accent);
+    background: var(--accent-light);
     transition: width 0.4s var(--ease-out-expo);
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: #FFFFFF; }
   .nav-links a:hover::after { width: 100%; }
   .nav-cta {
-    background: var(--ink);
+    background: var(--accent);
     color: var(--white);
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
@@ -120,9 +121,20 @@
     font-weight: 600;
     transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
   }
-  .nav-cta:hover { transform: scale(1.04); background: var(--accent); }
+  .nav-cta:hover { transform: scale(1.04); background: var(--accent-light); }
 
-  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+  }
+  .nav.scrolled .mobile-menu-btn { color: var(--ink); }
+  .nav.scrolled .nav-links a { color: var(--ink-muted); }
+  .nav.scrolled .nav-links a:hover { color: var(--ink); }
+  .nav.scrolled .nav-links a::after { background: var(--accent); }
 
   /* Hero */
   .hero {
@@ -652,7 +664,7 @@
 
 <!-- Nav -->
 <nav class="nav" id="nav">
-  <div class="nav-logo">The T Mansion</div>
+  <a href="#" class="nav-logo"><img src="images/logo.png" alt="The T Mansion"></a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#gallery">Gallery</a>
