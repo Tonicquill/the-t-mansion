@@ -759,7 +759,7 @@
   /* Testimonials */
   .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
   .testimonial-card {
@@ -897,6 +897,7 @@
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .events-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-section { grid-template-columns: 1fr; padding: 4rem; gap: 3rem; }
     .nav { padding: 1rem 2rem; }
     .nav.scrolled { padding: 0.7rem 2rem; }
@@ -1142,39 +1143,40 @@
     <p class="section-desc">Photos and memories shared by our guests. Tag us to be featured.</p>
   </div>
   <div class="guest-moments-grid">
-    <!-- Placeholder 1: Replace with real guest photo -->
+    <!-- Guest 1: Lai De Los Santos -->
     <div class="guest-moment reveal" onclick="openLightbox(this)">
-      <img src="images/gallery-2.jpg" alt="Guest moment placeholder">
+      <img src="images/gallery-2.jpg" alt="Guest moment - Lai De Los Santos">
       <div class="guest-moment-overlay">
-        <div class="guest-moment-name">Reynalyn Soon</div>
-        <div class="guest-moment-event">1st Birthday & Christening</div>
-        <p class="guest-moment-quote">"The kids enjoyed the pool and the function hall. We'll definitely be back."</p>
+        <div class="guest-moment-name">Lai De Los Santos</div>
+        <div class="guest-moment-event">1st Birthday Party</div>
+        <p class="guest-moment-quote">"Sobrang sulit. Ang laki ng function hall, ang ganda ng bahay, nakakarelax at linis."</p>
       </div>
     </div>
-    <!-- Placeholder 2 -->
+    <!-- Guest 2: Vane Ssa -->
     <div class="guest-moment reveal reveal-delay-1" onclick="openLightbox(this)">
-      <img src="images/gallery-5.jpg" alt="Guest moment placeholder">
+      <img src="images/gallery-5.jpg" alt="Guest moment - Vane Ssa">
       <div class="guest-moment-overlay">
         <div class="guest-moment-name">Vane Ssa</div>
         <div class="guest-moment-event">Weekend Staycation</div>
         <p class="guest-moment-quote">"I will rate this 100000/10. Sobrang linis and lawak pa ng place."</p>
       </div>
     </div>
-    <!-- Placeholder 3 -->
+    <!-- Guest 3: Rose Dizon -->
     <div class="guest-moment reveal reveal-delay-2" onclick="openLightbox(this)">
-      <img src="images/gallery-9.jpg" alt="Guest moment placeholder">
+      <img src="images/gallery-9.jpg" alt="Guest moment - Rose Dizon">
       <div class="guest-moment-overlay">
-        <div class="guest-moment-name">Joemar Sanchez</div>
-        <div class="guest-moment-event">Event Guest</div>
-        <p class="guest-moment-quote">"The staff were accommodating and the place exceeded expectations."</p>
+        <div class="guest-moment-name">Rose Dizon</div>
+        <div class="guest-moment-event">Family Gathering</div>
+        <p class="guest-moment-quote">"Feeling Queen sa Mansion. Aircon feels like freezer, plus billiards, videoke, swimming pool."</p>
       </div>
     </div>
-    <!-- Placeholder 4: CTA for more guests -->
-    <div class="guest-moment reveal" style="background: var(--bg-deep); display: flex; align-items: center; justify-content: center; cursor: default;">
-      <div style="text-align: center; padding: 2rem;">
-        <div style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--accent-light); margin-bottom: 1rem;">+</div>
-        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Your moment here</p>
-        <a href="#contact" class="btn-primary" style="font-size: 0.75rem; padding: 0.8rem 1.5rem;">Tag Us & Be Featured</a>
+    <!-- Guest 4: Charlyn Montemayor -->
+    <div class="guest-moment reveal" onclick="openLightbox(this)">
+      <img src="images/gallery-7.jpg" alt="Guest moment - Charlyn Montemayor">
+      <div class="guest-moment-overlay">
+        <div class="guest-moment-name">Charlyn Montemayor</div>
+        <div class="guest-moment-event">1st Birthday Party</div>
+        <p class="guest-moment-quote">"Nafeel namin tumira sa magandang mansion. Sa susunod po ulit."</p>
       </div>
     </div>
   </div>
@@ -1293,21 +1295,51 @@
   <div class="testimonials-grid">
     <div class="testimonial-card reveal">
       <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-text">"I will rate this 100000/10 great place to stay sobrang linis and lawak pa ng place as in kahit ilan pa kayo kayang kaya. Also very affordable for the place na ganito sobrang dami pa ng rooms and cr. Definitely recommendable place."</p>
+      <p class="testimonial-text">"I will rate this 100000/10. Great place to stay sobrang linis and lawak pa ng place as in kahit ilan pa kayo kayang kaya. Also very affordable for the place na ganito sobrang dami pa ng rooms and cr. Definitely recommendable place."</p>
       <div class="testimonial-author">Vane Ssa</div>
-      <div class="testimonial-role">Verified Guest</div>
+      <div class="testimonial-role">Verified Guest · Weekend Staycation</div>
     </div>
     <div class="testimonial-card reveal reveal-delay-1">
       <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-text">"Perfect place to stay when exploring nearby spots. The kids enjoyed the pool and the function hall. We'll definitely be back."</p>
-      <div class="testimonial-author">Reynalyn Soon</div>
-      <div class="testimonial-role">Celebrated daughter's 1st birthday & christening</div>
+      <p class="testimonial-text">"Super satisfied. Di ako nagkamali na ito ung napili kong venue para sa 1st birthday ng anak ko. Ganda ng function hall, napakalinis, at ganda ng bahay. Ang linis ng pool. Ang daming space na mapagpwestuhan. May tambayan sa labas, billiard, ktv sa loob, at ung mga room perpek. Tas ang gaganda ng cr. Gandang ganda sa venue pati mga bisita ko, tas gulat cla sa mura ng rates nila sa ganun kaganda. Pero pinakagusto ko sa lahat, napakabait ng may ari at ung caretakers. Sulit ang bayad, sa susunod ito pa din kukunin ko."</p>
+      <div class="testimonial-author">Lai De Los Santos</div>
+      <div class="testimonial-role">Verified Guest · 1st Birthday Party</div>
     </div>
     <div class="testimonial-card reveal reveal-delay-2">
       <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-text">"Thank you sir Joemar Sanchez for the wonderful experience. The staff were accommodating and the place exceeded expectations."</p>
-      <div class="testimonial-author">Joemar Sanchez</div>
-      <div class="testimonial-role">Event Guest</div>
+      <p class="testimonial-text">"Super satisfied as costumer! Highly recomended."</p>
+      <div class="testimonial-author">Joy Santos</div>
+      <div class="testimonial-role">Verified Guest</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Highly recommend this resort. The location is perfect, near convenience store, near Marquee Mall and The Infinity, near Landers. The house is huge with a function hall perfect for celebrating birthdays and reunions. Love the bathrooms so big and clean and the owners are so nice and accommodating with all our request. We will definitely comeback."</p>
+      <div class="testimonial-author">Jelena Fey Pantig Que&ntilde;ano-Suarez</div>
+      <div class="testimonial-role">Verified Guest · Birthday & Reunion</div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"I'm surprised how elegant spacious and clean the place. Most people I know shock how beautiful and affordable for family gatherings or for birthday event. Very memorable as in worth it truly nakakarelax with modern aesthetic ambiance feeling Queen sa Mansion. Aircon feels like freezer, plus billards, videoke, swimming pool. Lots of fun to do, nag enjoy whole family. Thank you T Mansion for the patience with all my concerns. See you for the next event."</p>
+      <div class="testimonial-author">Rose Dizon</div>
+      <div class="testimonial-role">Verified Guest · Family Gathering</div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Sobrang sulit po ng arkila namin para sa first bday ng anak namin. Ang laki ng function hall. Ang ganda din ng bahay. Nakakarelax at linis. The videoke area is giving. Very affordable din po para sa mga may event tulad namin. Highly recommended. Mabait din po may ari. Thank you so much po. Kahit papano nafeel namin tumira sa magandang mansion. Sa susunod po ulit."</p>
+      <div class="testimonial-author">Charlyn Montemayor - Adarvie</div>
+      <div class="testimonial-role">Verified Guest · 1st Birthday Party</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"5/5 - A Truly Relaxing Getaway. We had an amazing time at the villa resort. From the moment we arrived, we were welcomed with warm smiles and excellent service. The place is peaceful, beautifully maintained, and perfect for anyone looking to relax and unwind. The villa itself was spacious, clean, and well-equipped with everything we needed. We especially loved the private pool and the scenic views, it felt like our own little paradise. Highly recommended for anyone looking for a memorable event and stress-free vacation. We will definitely be coming back."</p>
+      <div class="testimonial-author">Adiol Osolge Aicilag</div>
+      <div class="testimonial-role">Verified Guest · Family Vacation</div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Nice place we will book again. Highly recommended po yung place. Thank you so much po."</p>
+      <div class="testimonial-author">Loreta David</div>
+      <div class="testimonial-role">Verified Guest · Repeat Guest</div>
     </div>
   </div>
 </section>
